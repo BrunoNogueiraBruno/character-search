@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import { getAllCharacters } from './api';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom'
+import Main from './pages/main';
 
 function App() {
-  const [list, setList] = useState([])
-  getAllCharacters().then((result) => setList(result))
-
-  const getChars = () => list.map((char: any, index) =>
-    <div key={`character-${index}`}>
-      <span>{char.name}</span>
-      {char.description}
-    </div>)
 
   return (
-    <div>
-      {getChars()}
-    </div >
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Main} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
