@@ -18,13 +18,15 @@ const Main = () => {
       <Header />
       <Container>
         {list?.map((char: ICharsList, index) => {
+          const key = `character-card-${index}`
           return (
             <CharacterCard
+              key={key}
               props={{
-                thumbnail: char.thumbnail.path,
+                thumbnail: char.thumbnail,
                 name: char.name,
                 description: char.description,
-                key: `character-card-${index}`
+                key: key
               }} />
           )
         })}

@@ -10,7 +10,7 @@ type IObject = {
   returned: number
 }
 
-type IThumbnail = {
+export type IThumbnail = {
   extension: string,
   path: string
 }

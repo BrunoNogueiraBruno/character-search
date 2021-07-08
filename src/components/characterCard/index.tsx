@@ -6,10 +6,13 @@ import {
 
 const CharacterCard = ({ props }: ICharacterCard) => {
   const { thumbnail, name, description, key } = props
-  console.log(thumbnail)
+
+  const imageSize = 'portrait_medium';
+  const imagePath = `${thumbnail.path}/${imageSize}.${thumbnail.extension}`
   return (
-    <Container key={key}>
-      <Image alt={key} />
+    <Container>
+      {name}
+      <Image src={imagePath} alt={key} />
     </Container>
   )
 }

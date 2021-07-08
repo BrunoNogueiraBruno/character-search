@@ -1,14 +1,17 @@
 import axios from 'axios'
+import mocked from './mocked.json'
+
+const shouldMock = true
 export const getAllCharacters = async () => {
   const url = 'https://gateway.marvel.com:443/v1/public/characters'
-  const publicKey = '3d532eea33b732649bf27500b91e67af'
-  const md5Hash = '47abdeaf65755dbac3c6a20605673de6'
+  const publicKey = 'bf0152d03dadfc9ac734e2c2e29f90f9'
+  const md5Hash = '101765d6cb497a71fcb55f0bfc27fd85'
 
-  // const endpoint = `${url}?ts=1&apikey=${publicKey}&hash=${md5Hash}`
-  const endpoint = 'https://gateway.marvel.com/v1/public/characters?ts=thesoer&apikey=001ac6c73378bbfff488a36141458af2&hash=72e5ed53d1398abb831c3ceec263f18b'
+  const endpoint = `${url}?ts=12&apikey=${publicKey}&hash=${md5Hash}`
+  const request = shouldMock ? mocked : axios.get(endpoint)
 
   try {
-    const result = (await axios.get(endpoint)).data.data.results
+    const result = (await request).data.results
     return result
 
   } catch (err) {
