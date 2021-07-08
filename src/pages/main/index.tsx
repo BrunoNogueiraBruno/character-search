@@ -1,36 +1,49 @@
-import { useEffect } from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import ReactPaginate from 'react-paginate'
 import { getAllCharacters } from "../../api"
 import CharacterCard from "../../components/characterCard"
+import Footer from "../../components/footer"
 import Header from "../../components/header"
 import { Container } from "./styles"
 import { ICharsList } from "./types"
 
+const CHARS_PER_PAGE = 10
+
 const Main = () => {
-  const [list, setList] = useState([])
+  const [currPage, setCurrPage] = useState(0)
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    getAllCharacters().then((result) => setList(result))
+    getAllCharacters().then((result) => setData(result))
   }, [])
+
+  const offset = currPage * CHARS_PER_PAGE // Fonte: https://ihsavru.medium.com/react-paginate-implementing-pagination-in-react-f199625a5c8e
+  const currPageData = data
+    .slice(offset, offset + CHARS_PER_PAGE)
+    .map((char: ICharsList, index: number) =>
+      <CharacterCard
+        key={`character-index-${index}`}
+        props={{
+          thumbnail: char.thumbnail,
+          name: char.name,
+          description: char.description,
+          key: `character-index-${index}`
+        }}
+      />
+    )
 
   return (
     <>
       <Header />
       <Container>
-        {list?.map((char: ICharsList, index) => {
-          const key = `character-card-${index}`
-          return (
-            <CharacterCard
-              key={key}
-              props={{
-                thumbnail: char.thumbnail,
-                name: char.name,
-                description: char.description,
-                key: key
-              }} />
-          )
-        })}
+        {currPageData}
       </Container>
+      <Footer
+        props={{
+          currPage,
+          setCurrPage
+        }}
+      />
     </>
   )
 }

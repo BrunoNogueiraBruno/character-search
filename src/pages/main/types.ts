@@ -31,5 +31,6 @@ export type ICharsList = {
   series: IObject,
   stories: IObject,
   thumbnail: IThumbnail,
-  urls: IURL[]
+  urls: IURL[],
+  page?: number
 }
