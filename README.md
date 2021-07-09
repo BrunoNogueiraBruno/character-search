@@ -4,7 +4,8 @@
 - [ X ] 1.3 Buscar personagem por nome;
 - [ X ] 1.4 Navegar entre as páginas;
 - [ ] 1.5 Mostrar mais informações em "detalhe";
-- [ ] 1.6 Tela de especificações.
+- [ ] 1.6 Tela de especificações;
+- [ ] 1.7 Tratar erro de requisição;
 
 ## 2. Detalhe
 - [ ] 2.1 Listar mídias em que o personagem aparece ( com título, imagem e + );

@@ -9,7 +9,7 @@ export const Container = styled.div`
   color: ${primaryTextColor};
   display: flex;
   justify-content: center;
-  height: 8vh;
+  min-height: 8vh;
   width: 100vw;
 `
 

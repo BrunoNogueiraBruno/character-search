@@ -7,13 +7,14 @@ export const Container = styled.div`
   background: ${primaryBGColor};
   display: flex;
   justify-content: center;
+  flex-grow: 1;
   width: 100vw;
 `
 
 export const Content = styled.div`
-  height: 75vh;
   padding-top: 30px;
   padding-bottom: 24px;
+  height: 75vh;
   width: 80%;
 `
 

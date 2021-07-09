@@ -12,13 +12,12 @@ import {
 } from "./styles"
 import { ICharsList } from "./types"
 
-const CHARS_PER_PAGE = 10
-
 const Main = () => {
   const [currPage, setCurrPage] = useState(0)
   const [data, setData] = useState([])
   const [searchValue, setSearchValue] = useState('')
-  const numOfPages = data.length / CHARS_PER_PAGE
+  const [charsPerPage, setCharsPerPage] = useState(10)
+  const numOfPages = data.length / charsPerPage
 
   useEffect(() => {
     getAllCharacters().then((result) => {
@@ -27,9 +26,9 @@ const Main = () => {
     })
   }, [searchValue])
 
-  const offset = currPage * CHARS_PER_PAGE // Fonte: https://ihsavru.medium.com/react-paginate-implementing-pagination-in-react-f199625a5c8e
+  const offset = currPage * charsPerPage // Fonte: https://ihsavru.medium.com/react-paginate-implementing-pagination-in-react-f199625a5c8e
   const currPageData = data
-    .slice(offset, offset + CHARS_PER_PAGE)
+    .slice(offset, offset + charsPerPage)
     .map((char: ICharsList, index: number) =>
       <CharacterCard
         key={`character-index-${index}`}
@@ -54,6 +53,13 @@ const Main = () => {
           <TableHeader>
             <span>Personagem</span>
             <span>Descrição</span>
+            <div>
+              <select value={charsPerPage} onChange={(e) => setCharsPerPage(Number(e.target.value))}>
+                <option value={15}>15</option>
+                <option value={10}>10</option>
+                <option value={5}>5</option>
+              </select>
+            </div>
           </TableHeader>
 
           <DisplayCharacters>

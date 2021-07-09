@@ -9,7 +9,6 @@ import {
 const CharacterCard = ({ props }: ICharacterCard) => {
   const { thumbnail, name, description, key } = props
   const screenSize = window.screen.width;
-  console.log(screenSize)
 
   const imageSize = 'portrait_small';
   const imagePath = `${thumbnail.path}/${imageSize}.${thumbnail.extension}`

@@ -10,5 +10,6 @@ export type IFooter = {
 
 export type IButtonToConstruct = {
   onClick: () => void,
-  content: any
+  content: any,
+  whenHide?: number[]
 }
