@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
-import ReactPaginate from 'react-paginate'
 import { getAllCharacters } from "../../api"
 import CharacterCard from "../../components/characterCard"
 import Footer from "../../components/footer"
 import Header from "../../components/header"
-import { Container } from "./styles"
+import {
+  Container,
+  Content,
+  TableHeader
+} from "./styles"
 import { ICharsList } from "./types"
 
 const CHARS_PER_PAGE = 10
@@ -37,7 +40,13 @@ const Main = () => {
     <>
       <Header />
       <Container>
-        {currPageData}
+        <Content>
+          <TableHeader>
+            <span>Personagem</span>
+            <span>Descrição</span>
+          </TableHeader>
+          {currPageData}
+        </Content>
       </Container>
       <Footer
         props={{

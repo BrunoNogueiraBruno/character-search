@@ -1,18 +1,29 @@
 import { ICharacterCard } from './types'
 import {
   Container,
-  Image
+  MainInfo,
+  Image,
+  DescriptionContainer
 } from './styles'
 
 const CharacterCard = ({ props }: ICharacterCard) => {
   const { thumbnail, name, description, key } = props
+  const screenSize = window.screen.width;
+  console.log(screenSize)
 
   const imageSize = 'portrait_small';
   const imagePath = `${thumbnail.path}/${imageSize}.${thumbnail.extension}`
   return (
     <Container>
-      {name}
-      <Image src={imagePath} alt={key} />
+      <MainInfo>
+        <Image src={imagePath} alt={key} />
+        {name}
+      </MainInfo>
+      {screenSize > 800 && (
+        <DescriptionContainer>
+          {description}
+        </DescriptionContainer>
+      )}
     </Container>
   )
 }
