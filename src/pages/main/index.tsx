@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { getAllCharacters } from "../../api"
 import CharacterCard from "../../components/characterCard"
 import CharacterSearch from "../../components/characterSearch"
+import ErrorMessage from "../../components/errorMessage"
 import Footer from "../../components/footer"
 import Header from "../../components/header"
 import {
@@ -18,13 +19,19 @@ const Main = () => {
   const [data, setData] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const [charsPerPage, setCharsPerPage] = useState(10)
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
   const numOfPages = data.length / charsPerPage
 
   useEffect(() => {
-    getAllCharacters().then((result) => {
-      const list = result.filter((char: ICharsList) => char.name.includes(searchValue))
-      setData(list)
-    })
+    getAllCharacters()
+      .then((result) => {
+        const list = result.filter((char: ICharsList) => char.name.includes(searchValue))
+        setData(list)
+      })
+      .catch((err) => {
+        console.error(err)
+        setShowErrorMessage(true)
+      })
   }, [searchValue])
 
   const offset = currPage * charsPerPage // Fonte: https://ihsavru.medium.com/react-paginate-implementing-pagination-in-react-f199625a5c8e
@@ -65,9 +72,13 @@ const Main = () => {
             </CharsPerPageContainer>
           </TableHeader>
 
-          <DisplayCharacters>
-            {currPageData}
-          </DisplayCharacters>
+          {
+            showErrorMessage ? (<ErrorMessage />) : (
+              <DisplayCharacters>
+                {currPageData}
+              </DisplayCharacters>
+            )
+          }
 
         </Content>
       </Container>

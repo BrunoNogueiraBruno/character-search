@@ -25,9 +25,9 @@ const Footer = ({ props }: IFooter) => {
   }
 
   const buttonConstructor = (buttons: IButtonToConstruct[]) =>
-    buttons.map(({ onClick, content }, index) => (
+    buttons.map(({ onClick, content }) => (
       <Button
-        key={`button-${index}`}
+        key={`button-${content}`}
         type='button'
         changeBG={(currPage + 1) === content
         }
@@ -40,14 +40,14 @@ const Footer = ({ props }: IFooter) => {
   const arrowConstructor = (buttons: IButtonToConstruct[]) => (
     <ArrowsContainer>
       {
-        buttons.map(({ onClick, content, whenHide }, index) => {
+        buttons.map(({ onClick, content, whenHide, name }, index) => {
           const whenHideFixed = whenHide?.map((num) => Math.ceil(num))
           return (
             <ArrowButton
-              key={`arrow-button-${index}`}
+              key={`${name}-${index}`}
               type='button'
               onClick={onClick}
-              hide={!!whenHideFixed?.includes(currPage)}
+              hide={!!whenHideFixed?.includes(currPage) || numOfPages === 0}
             >
               {content}
             </ArrowButton>
@@ -75,24 +75,28 @@ const Footer = ({ props }: IFooter) => {
       {
         onClick: () => setCurrPage(0),
         content: <img src='/icons/chevron-double-left.svg' alt='seta dupla esquerda' />,
-        whenHide: [0, 1]
+        whenHide: [0, 1],
+        name: 'double-arrow-left'
       },
       {
         onClick: handlePreviousPage,
         content: <img src='/icons/chevron-left.svg' alt='seta esquerda' />,
-        whenHide: [0]
+        whenHide: [0],
+        name: 'arrow-left'
       },
     ])
     const right = arrowConstructor([
       {
         onClick: handleNextPage,
         content: <img src='/icons/chevron-right.svg' alt='seta direita' />,
-        whenHide: [lastPage]
+        whenHide: [lastPage],
+        name: 'double-arrow-right'
       },
       {
         onClick: () => setCurrPage(lastPage),
         content: <img src='/icons/chevron-double-right.svg' alt='seta dupla direita' />,
-        whenHide: [lastPage - 1, lastPage]
+        whenHide: [lastPage - 1, lastPage],
+        name: 'arrow-right'
       },
     ])
     const index = (

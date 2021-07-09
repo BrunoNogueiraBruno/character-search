@@ -11,7 +11,7 @@ export const getAllCharacters = async () => {
   const request = shouldMock ? mocked : axios.get(endpoint)
 
   try {
-    const result = (await request).data.results
+    const result = (await request).data.data.results
     return result
 
   } catch (err) {
