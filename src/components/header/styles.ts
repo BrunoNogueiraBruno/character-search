@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../colors'
 
-const { headerBGColor, secondaryBGColor, primaryTextColor } = colors
+const { headerBGColor, secondaryBGColor, primaryTextColor, buttonHighlightColor } = colors
 
 export const Container = styled.div`
   align-items: center;
@@ -19,6 +19,18 @@ export const Content = styled.header`
   justify-content: space-between;
   padding: 0 24px;
   width: 100%;
+`
+
+export const ReturnButton = styled.button.attrs({
+  children: 'VOLTAR',
+  type: 'button'
+})`
+  background: none;
+  border: none;
+  color: ${buttonHighlightColor};
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.3em;
 `
 
 export const Title = styled.h1.attrs({

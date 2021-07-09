@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { getAllCharacters } from "../../api"
+import { Link } from 'react-router-dom'
 import CharacterCard from "../../components/characterCard"
 import CharacterSearch from "../../components/characterSearch"
 import ErrorMessage from "../../components/errorMessage"
@@ -38,15 +39,16 @@ const Main = () => {
   const currPageData = data
     .slice(offset, offset + charsPerPage)
     .map((char: ICharsList, index: number) =>
-      <CharacterCard
-        key={`character-index-${index}`}
-        props={{
-          thumbnail: char.thumbnail,
-          name: char.name,
-          description: char.description,
-          key: `character-index-${index}`
-        }}
-      />
+      <Link to={`/character-details/${char.id}`} key={`character-index-${index}`}>
+        <CharacterCard
+          props={{
+            thumbnail: char.thumbnail,
+            name: char.name,
+            description: char.description,
+            key: `character-index-${index}`
+          }}
+        />
+      </Link>
     )
 
   return (
