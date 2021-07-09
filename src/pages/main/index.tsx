@@ -12,6 +12,7 @@ const CHARS_PER_PAGE = 10
 const Main = () => {
   const [currPage, setCurrPage] = useState(0)
   const [data, setData] = useState([])
+  const numOfPages = data.length / CHARS_PER_PAGE
 
   useEffect(() => {
     getAllCharacters().then((result) => setData(result))
@@ -41,7 +42,8 @@ const Main = () => {
       <Footer
         props={{
           currPage,
-          setCurrPage
+          setCurrPage,
+          numOfPages
         }}
       />
     </>
