@@ -11,11 +11,19 @@ export const Container = styled.div`
 `
 
 export const Content = styled.div`
+  height: 75vh;
+  padding-top: 30px;
+  padding-bottom: 24px;
+  width: 80%;
+`
+
+export const DisplayCharacters = styled.div`
   display: grid;
   grid-row-gap: 9px;
-  height: 84vh;
   overflow-y: auto;
-  width: 80%;
+  height: 60%;
+  padding-top: 4px;
+  margin-top: 9px;
 `
 
 export const TableHeader = styled.div`
