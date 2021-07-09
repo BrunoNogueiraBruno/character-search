@@ -8,7 +8,8 @@ import {
   Container,
   Content,
   DisplayCharacters,
-  TableHeader
+  TableHeader,
+  CharsPerPageContainer
 } from "./styles"
 import { ICharsList } from "./types"
 
@@ -53,13 +54,15 @@ const Main = () => {
           <TableHeader>
             <span>Personagem</span>
             <span>Descrição</span>
-            <div>
-              <select value={charsPerPage} onChange={(e) => setCharsPerPage(Number(e.target.value))}>
-                <option value={15}>15</option>
-                <option value={10}>10</option>
-                <option value={5}>5</option>
-              </select>
-            </div>
+            <CharsPerPageContainer>
+              <label>
+                <select value={charsPerPage} onChange={(e) => setCharsPerPage(Number(e.target.value))}>
+                  <option value={15}>15</option>
+                  <option value={10}>10</option>
+                  <option value={5}>5</option>
+                </select>
+              </label>
+            </CharsPerPageContainer>
           </TableHeader>
 
           <DisplayCharacters>

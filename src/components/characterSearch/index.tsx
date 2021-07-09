@@ -4,7 +4,7 @@ import {
   InputContainer,
   InputContent,
   InputSearch,
-  ButtonSearch
+  SearchIcon
 } from './styles'
 import { ICharacterSearch } from './types'
 
@@ -25,13 +25,7 @@ const CharacterSearch = ({ props }: ICharacterSearch) => {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
-
-            <ButtonSearch
-              type='button'
-              onClick={() => alert('a')}
-            >
-              <img src='/icons/search.svg' alt='busca' />
-            </ButtonSearch>
+            <SearchIcon src='/icons/search.svg' alt='busca' />
           </InputContent>
         </label>
       </InputContainer>

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../colors'
 
-const { primaryBGColor, secondaryTextColor } = colors
+const { primaryBGColor, secondaryBGColor, secondaryTextColor } = colors
 
 export const Container = styled.div`
   background: ${primaryBGColor};
@@ -34,5 +34,19 @@ export const TableHeader = styled.div`
 
   span {
     width: 50%
+  }
+`
+
+export const CharsPerPageContainer = styled.div`
+  font-size: 15px;
+
+  select {
+    background: ${secondaryBGColor};
+    border: 1px ${secondaryTextColor} solid;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+    }
   }
 `
